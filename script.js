@@ -5,8 +5,8 @@ header("Content-Type: application/json");
 // ------------------------------------------------------------------
 // 1. DARAJA API CONFIGURATION
 // ------------------------------------------------------------------
-$consumerKey    = 'YOUR_CONSUMER_KEY';       // Replace with your Consumer Key
-$consumerSecret = 'YOUR_CONSUMER_SECRET';    // Replace with your Consumer Secret
+$consumerKey    = 'H4vPUbiGLZOA2u0XPQv6Ig0XCctW8yGAmjjmdPndP3ZDxBRf';       // Replace with your Consumer Key
+$consumerSecret = 'pExaZQquoyIenkBm3LLWjHKfcIxbQ7zsU2sGSJpfoKGd1l4SETzwpwRX26oY5onx';    // Replace with your Consumer Secret
 $BusinessShortCode = '174379';               // Default Daraja Sandbox Paybill
 $Passkey        = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'; // Default Sandbox Passkey
 
