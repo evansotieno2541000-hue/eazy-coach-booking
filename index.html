@@ -3,70 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eazy Coach Bus Booking</title>
+  <title>Eazy Coach | Modern Bus Booking & Ticketing</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="booking-container">
-    <h2>Eazy Coach Ticket Booking</h2>
 
-    <!-- Step 1: Select Route & Date -->
-    <div class="form-group">
-      <label for="route">Travel Route</label>
-      <select id="route" onchange="updateFare()">
-        <option value="">Select Route...</option>
-        <option value="Nairobi-Kisumu" data-fare="1750">Nairobi ➔ Kisumu (KES 1,750)</option>
-        <option value="Nairobi-Busia" data-fare="1800">Nairobi ➔ Busia (KES 1,800)</option>
-        <option value="Nairobi-Eldoret" data-fare="1550">Nairobi ➔ Eldoret (KES 1,550)</option>
-        <option value="Nairobi-Kakamega" data-fare="1650">Nairobi ➔ Kakamega (KES 1,650)</option>
-        <option value="Nairobi-Kitale" data-fare="1700">Nairobi ➔ Kitale (KES 1,700)</option>
-        <option value="Nairobi-Malaba" data-fare="1750">Nairobi ➔ Malaba (KES 1,750)</option>
-        <option value="Nairobi-Sirare" data-fare="1450">Nairobi ➔ Sirare (KES 1,450)</option>
-      </select>
-    </div>
+  <!-- Top Announcement Bar -->
+  <div class="promo-banner">
+    ⚡ Fast, Safe & Reliable Travel Across Kenya | Direct M-Pesa STK Push Payment
+  </div>
 
-    <div class="form-group">
-      <label for="date">Travel Date</label>
-      <input type="date" id="date" />
-    </div>
-
-    <!-- Step 2: Interactive Seat Picker -->
-    <div class="seat-picker">
-      <p>Select Your Seat: <span id="selected-seat-text">None</span></p>
-      <div class="bus-grid">
-        <button class="seat" onclick="selectSeat(this, '1A')">1A</button>
-        <button class="seat" onclick="selectSeat(this, '1B')">1B</button>
-        <div class="aisle"></div>
-        <button class="seat" onclick="selectSeat(this, '1C')">1C</button>
-        <button class="seat" onclick="selectSeat(this, '1D')">1D</button>
-
-        <button class="seat" onclick="selectSeat(this, '2A')">2A</button>
-        <button class="seat" onclick="selectSeat(this, '2B')">2B</button>
-        <div class="aisle"></div>
-        <button class="seat" onclick="selectSeat(this, '2C')">2C</button>
-        <button class="seat" onclick="selectSeat(this, '2D')">2D</button>
-
-        <button class="seat" onclick="selectSeat(this, '3A')">3A</button>
-        <button class="seat" onclick="selectSeat(this, '3B')">3B</button>
-        <div class="aisle"></div>
-        <button class="seat" onclick="selectSeat(this, '3C')">3C</button>
-        <button class="seat" onclick="selectSeat(this, '3D')">3D</button>
+  <!-- Hero Banner -->
+  <header class="hero">
+    <h1>Travel Comfortably with <span>Eazy Coach</span></h1>
+    <p>Book your preferred bus seats in seconds with instant M-Pesa payment and automated SMS ticket delivery.</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <h4>⚡ Instant STK Push</h4>
+        <p>Direct M-Pesa PIN prompt</p>
+      </div>
+      <div class="feature-card">
+        <h4>💺 Live Seat Selection</h4>
+        <p>Pick your exact seat</p>
+      </div>
+      <div class="feature-card">
+        <h4>📱 SMS E-Ticket</h4>
+        <p>Sent directly to your phone</p>
       </div>
     </div>
+  </header>
 
-    <!-- Step 3: Payment Section -->
-    <div class="form-group">
-      <label for="phone">M-Pesa Phone Number</label>
-      <input type="tel" id="phone" placeholder="e.g. 254712345678" />
-    </div>
+  <!-- Main Body Content: Advertising Left Column & Form Right Column -->
+  <main class="main-wrapper">
+    
+    <!-- Advertising / Information Column -->
+    <section class="info-side">
+      <h2>Why Travel With Eazy Coach?</h2>
+      <p>We connect major Kenyan urban hubs with scheduled daily departures, ultimate passenger safety, and transparent pricing.</p>
+      
+      <ul class="benefits-list">
+        <li><span class="icon">✓</span> Guaranteed Seat Reservations</li>
+        <li><span class="icon">✓</span> Free Onboard Wi-Fi & Charging Outlets</li>
+        <li><span class="icon">✓</span> Instant M-Pesa Payment Security</li>
+        <li><span class="icon">✓</span> 24/7 Customer Service Support</li>
+      </ul>
+    </section>
 
-    <div class="fare-total">
-      <p>Total Amount: <strong id="total-fare">KES 0</strong></p>
-    </div>
+    <!-- Interactive Booking Card -->
+    <section class="booking-card">
+      <h3>Book Your Seat</h3>
 
-    <button class="btn-pay" onclick="triggerMpesaPayment()">Pay via M-PESA</button>
-    <p id="status-msg"></p>
-  </div>
+      <!-- Step 1: Destination -->
+      <div class="form-step">
+        <label for="route">1. Travel Route</label>
+        <select id="route" onchange="updateFare()">
+          <option value="">Select Destination...</option>
+          <option value="Nairobi-Kisumu" data-fare="1750">Nairobi ➔ Kisumu (KES 1,750)</option>
+          <option value="Nairobi-Busia" data-fare="1800">Nairobi ➔ Busia (KES 1,800)</option>
+          <option value="Nairobi-Eldoret" data-fare="1550">Nairobi ➔ Eldoret (KES 1,550)</option>
+          <option value="Nairobi-Kakamega" data-fare="1650">Nairobi ➔ Kakamega (KES 1,650)</option>
+          <option value="Nairobi-Kitale" data-fare="1700">Nairobi ➔ Kitale (KES 1,700)</option>
+          <option value="Nairobi-Malaba" data-fare="1750">Nairobi ➔ Malaba (KES 1,750)</option>
+          <option value="Nairobi-Sirare" data-fare="1450">Nairobi ➔ Sirare (KES 1,450)</option>
+        </select>
+      </div>
+
+      <!-- Step 2: Date Picker -->
+      <div class="form-step">
+        <label for="date">2. Travel Date</label>
+        <input type="date" id="date" />
+      </div>
+
+      <!-- Step 3: Interactive Seat Picker -->
+      <div class="form-step">
+        <label>3. Preferred Seat</label>
+        <div class="seat-section">
+          <div class="seat-header">
+            <span>Select Seat</span>
+            <span id="selected-seat-text">None</span>
+          </div>
+          <div class="bus-grid">
+            <button class="seat" onclick="selectSeat(this, '1A')">1A</button>
+            <button class="seat" onclick="selectSeat(this, '1B')">1B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '1C')">1C</button>
+            <button class="seat" onclick="selectSeat(this, '1D')">1D</button>
+
+            <button class="seat" onclick="selectSeat(this, '2A')">2A</button>
+            <button class="seat" onclick="selectSeat(this, '2B')">2B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '2C')">2C</button>
+            <button class="seat" onclick="selectSeat(this, '2D')">2D</button>
+
+            <button class="seat" onclick="selectSeat(this, '3A')">3A</button>
+            <button class="seat" onclick="selectSeat(this, '3B')">3B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '3C')">3C</button>
+            <button class="seat" onclick="selectSeat(this, '3D')">3D</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Phone Number -->
+      <div class="form-step">
+        <label for="phone">4. M-Pesa Phone Number</label>
+        <input type="tel" id="phone" placeholder="e.g. 254712345678" />
+      </div>
+
+      <!-- Total Fare & Payment Trigger -->
+      <div class="fare-box">
+        <label>Total Fare:</label>
+        <span id="total-fare">KES 0</span>
+      </div>
+
+      <button class="btn-pay" onclick="triggerMpesaPayment()">Pay via M-PESA</button>
+      <p id="status-msg"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Eazy Coach Express. All Rights Reserved.
+  </footer>
 
   <script src="script.js"></script>
 </body>
