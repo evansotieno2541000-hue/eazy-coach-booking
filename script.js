@@ -35,7 +35,7 @@ async function triggerMpesaPayment() {
 
   try {
     // Replace URL below with your actual Render API URL once deployed
-    const response = await fetch('https://eazy-coach-api.onrender.com/api/pay', {
+    const response = '[https://eazy-coach-booking.onrender.com/api/pay](https://eazy-coach-booking.onrender.com/api/pay)'
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
