@@ -12,69 +12,56 @@
             font-family: Arial, sans-serif;
         }
         body {
-            background-color: #f4f6f9;
+            /* Background image with a soft light overlay for readability */
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('bus-bg.png') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
-            padding: 20px;
+            padding: 30px 15px;
         }
-        .main-container {
+        .page-wrapper {
             max-width: 500px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        /* Individual Form Card (Light Theme) */
+        .form-card {
             background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        /* Tab Navigation */
-        .tab-nav {
-            display: flex;
-            background: #004085;
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 14px 10px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-        }
-        .tab-btn.active {
-            background: #007bff;
-            border-bottom: 4px solid #ffc107;
-        }
-        .tab-content {
-            display: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 25px;
+            border-top: 5px solid #cc0000;
         }
-        .tab-content.active {
-            display: block;
-        }
-        /* Shared Form Elements */
-        .value-props {
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            font-weight: bold;
-            color: #004085;
-            background: #eef2ff;
-            padding: 8px 10px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+        /* Red Headings & Words */
         h2 {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 5px;
-            color: #222;
+            color: #cc0000;
+        }
+        .red-text {
+            color: #cc0000;
+            font-weight: bold;
         }
         .subtitle {
             font-size: 13px;
             color: #666;
             margin-bottom: 20px;
         }
+        .value-props {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: bold;
+            color: #cc0000;
+            background: #fff5f5;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ffcccc;
+        }
+        /* Form Elements */
         .form-group {
             margin-bottom: 15px;
             text-align: left;
@@ -99,12 +86,14 @@
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 14px;
+            background: #fdfdfd;
         }
         .fare-display {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #f1f3f5;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
             padding: 12px;
             border-radius: 6px;
             margin: 20px 0;
@@ -112,7 +101,7 @@
         }
         .pay-btn {
             width: 100%;
-            background-color: #28a745;
+            background-color: #cc0000;
             color: white;
             padding: 14px;
             border: none;
@@ -123,11 +112,11 @@
             transition: 0.2s;
         }
         .pay-btn:hover {
-            background-color: #218838;
+            background-color: #a30000;
         }
         /* Bus Seat Grid Styles */
         .bus-container {
-            border: 2px solid #ddd;
+            border: 1px solid #ddd;
             padding: 15px;
             border-radius: 8px;
             background: #fafafa;
@@ -141,6 +130,7 @@
             border-radius: 4px;
             font-size: 13px;
             text-align: center;
+            color: #444;
         }
         .seat-grid {
             display: flex;
@@ -177,7 +167,7 @@
             justify-content: center;
         }
         .seat.selected {
-            background-color: #007bff;
+            background-color: #cc0000;
         }
         .seat-legend {
             display: flex;
@@ -197,21 +187,15 @@
             border-radius: 2px;
         }
         .box.available { background: #28a745; }
-        .box.selected { background: #007bff; }
+        .box.selected { background: #cc0000; }
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <!-- Tab Navigation Bar -->
-    <div class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab(event, 'busTab')">🚌 Book Bus</button>
-        <button class="tab-btn" onclick="switchTab(event, 'parcelTab')">📦 Parcels</button>
-        <button class="tab-btn" onclick="switchTab(event, 'hireTab')">🚐 Bus Hire</button>
-    </div>
+<div class="page-wrapper">
 
-    <!-- TAB 1: BUS SEAT BOOKING -->
-    <div id="busTab" class="tab-content active">
+    <!-- FORM 1: BUS SEAT BOOKING -->
+    <div class="form-card">
         <h2>Book Your Bus Ticket</h2>
         <p class="subtitle">Select your route, pick a seat (45 Seater), and pay via M-Pesa.</p>
         
@@ -252,15 +236,15 @@
 
             <div class="fare-display">
                 <span>Total Bus Fare:</span>
-                <strong id="busTotalDisplay">KES 1,200.00</strong>
+                <strong id="busTotalDisplay" class="red-text">KES 1,200.00</strong>
             </div>
 
             <button type="button" id="payBusBtn" class="pay-btn">Pay for Ticket via M-Pesa</button>
         </form>
     </div>
 
-    <!-- TAB 2: PARCELS & COURIER -->
-    <div id="parcelTab" class="tab-content">
+    <!-- FORM 2: PARCELS & COURIER -->
+    <div class="form-card">
         <h2>Parcel & Courier Services</h2>
         <p class="subtitle">Secure delivery for documents and packages across branches.</p>
         
@@ -296,15 +280,15 @@
 
             <div class="fare-display">
                 <span>Total Courier Fee:</span>
-                <strong id="parcelTotalDisplay">KES 300.00</strong>
+                <strong id="parcelTotalDisplay" class="red-text">KES 300.00</strong>
             </div>
 
             <button type="button" id="payParcelBtn" class="pay-btn">Pay for Parcel via M-Pesa</button>
         </form>
     </div>
 
-    <!-- TAB 3: BUS HIRE & CHARTER -->
-    <div id="hireTab" class="tab-content">
+    <!-- FORM 3: BUS HIRE & CHARTER -->
+    <div class="form-card">
         <div class="value-props">
             <span>🛡️ Verified Drivers</span>
             <span>💰 Great Value</span>
@@ -368,23 +352,16 @@
 
             <div class="fare-display">
                 <span>Required Deposit:</span>
-                <strong id="hireDepositDisplay">KES 10,000.00</strong>
+                <strong id="hireDepositDisplay" class="red-text">KES 10,000.00</strong>
             </div>
 
             <button type="button" id="payHireBtn" class="pay-btn">Pay Hire Deposit via M-Pesa</button>
         </form>
     </div>
+
 </div>
 
 <script>
-    // Tab Management
-    function switchTab(evt, tabId) {
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        evt.currentTarget.classList.add('active');
-    }
-
     document.addEventListener("DOMContentLoaded", function() {
         // --- 1. GENERATE 45 SEATS (9 rows * 5 seats) ---
         const seatGrid = document.getElementById('seatGrid');
