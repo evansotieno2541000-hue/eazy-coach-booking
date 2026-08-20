@@ -1,108 +1,140 @@
-// State tracking variables
-let selectedSeatNumber = null;
-let currentFare = 0;
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
 
-/**
- * Updates the total fare displayed based on the selected route.
- */
-function updateFare() {
-  const routeSelect = document.getElementById('route');
-  const selectedOption = routeSelect.options[routeSelect.selectedIndex];
-  
-  // Extract custom data-fare attribute from selected route
-  currentFare = selectedOption.getAttribute('data-fare') || 0;
-  
-  const totalFareDisplay = document.getElementById('total-fare');
+// ------------------------------------------------------------------
+// 1. DARAJA API CONFIGURATION
+// ------------------------------------------------------------------
+$consumerKey    = 'YOUR_CONSUMER_KEY';       // Replace with your Consumer Key
+$consumerSecret = 'YOUR_CONSUMER_SECRET';    // Replace with your Consumer Secret
+$BusinessShortCode = '174379';               // Default Daraja Sandbox Paybill
+$Passkey        = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'; // Default Sandbox Passkey
 
-  if (selectedSeatNumber && currentFare > 0) {
-    totalFareDisplay.innerText = `KES ${parseInt(currentFare).toLocaleString()}`;
-  } else if (currentFare > 0) {
-    totalFareDisplay.innerText = `KES ${parseInt(currentFare).toLocaleString()}`;
-  } else {
-    totalFareDisplay.innerText = `KES 0`;
-  }
+$PartyB         = $BusinessShortCode;
+$AccountReference = 'EazyCoach';
+$TransactionDesc  = 'Bus Ticket Payment';
+
+// Live Callback URL pointing to your callback.php script
+$CallBackURL    = 'https://your-domain.com/callback.php'; 
+
+// Daraja Sandbox Endpoints
+$authUrl    = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+$stkPushUrl = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+
+// ------------------------------------------------------------------
+// 2. CAPTURE & SANITIZE REQUEST DATA
+// ------------------------------------------------------------------
+$rawInput = file_get_contents('php://input');
+$jsonData = json_decode($rawInput, true);
+
+$phone  = $_POST['phone']  ?? $jsonData['phone']  ?? '';
+$amount = $_POST['amount'] ?? $jsonData['amount'] ?? '';
+$route  = $_POST['route']  ?? $jsonData['route']  ?? 'Default Route';
+$date   = $_POST['date']   ?? $jsonData['date']   ?? date('Y-m-d');
+$seat   = $_POST['seat']   ?? $jsonData['seat']   ?? 'Standard';
+
+if (empty($phone) || empty($amount)) {
+    echo json_encode(["status" => "error", "message" => "Phone number and amount are required."]);
+    exit;
 }
 
-/**
- * Handles seat selection click events in the 45-seat bus grid.
- */
-function selectSeat(button, seatNumber) {
-  // Clear 'selected' class from any previously selected seat
-  const allSeats = document.querySelectorAll('.seat');
-  allSeats.forEach(s => s.classList.remove('selected'));
-
-  // Highlight the clicked seat
-  button.classList.add('selected');
-  selectedSeatNumber = seatNumber;
-
-  // Update UI indicators
-  document.getElementById('selected-seat-text').innerText = `Selected: ${seatNumber}`;
-  
-  if (currentFare > 0) {
-    document.getElementById('total-fare').innerText = `KES ${parseInt(currentFare).toLocaleString()}`;
-  }
+// Format Phone Number to Standard 254XXXXXXXXX
+$phone = preg_replace('/[^0-9]/', '', $phone);
+if (substr($phone, 0, 1) == '0') {
+    $phone = '254' . substr($phone, 1);
+} elseif (strlen($phone) == 9) {
+    $phone = '254' . $phone;
 }
 
-/**
- * Validates inputs and triggers the payment workflow.
- */
-function triggerMpesaPayment() {
-  const route = document.getElementById('route').value;
-  const date = document.getElementById('date').value;
-  const phone = document.getElementById('phone').value.trim();
-  const statusMsg = document.getElementById('status-msg');
+// ------------------------------------------------------------------
+// 3. GENERATE SAFARICOM OAUTH ACCESS TOKEN
+// ------------------------------------------------------------------
+$headers = [
+    'Authorization: Basic ' . base64_encode($consumerKey . ':' . $consumerSecret)
+];
 
-  // Input validation checks
-  if (!route) {
-    alert("Please select a travel route.");
-    return;
-  }
-  if (!date) {
-    alert("Please select a travel date.");
-    return;
-  }
-  if (!selectedSeatNumber) {
-    alert("Please select a preferred seat from the bus layout.");
-    return;
-  }
-  if (!phone || phone.length < 10) {
-    alert("Please enter a valid M-Pesa phone number (e.g. 254712345678 or 0712345678).");
-    return;
-  }
+$ch = curl_init($authUrl);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$authResponse = curl_exec($ch);
+curl_close($ch);
 
-  // Display pending state
-  statusMsg.style.color = "#dc2626";
-  statusMsg.innerText = "Initiating M-Pesa STK Push prompt...";
+$authData = json_decode($authResponse, true);
+$accessToken = $authData['access_token'] ?? null;
 
-  /*
-  // REAL BACKEND INTEGRATION:
-  // Uncomment and update this block once you upload stkpush.php to a PHP server
-  
-  fetch('https://YOUR-PHP-SERVER-URL.com/stkpush.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      phone: phone,
-      amount: currentFare,
-      route: route,
-      date: date,
-      seat: selectedSeatNumber
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    statusMsg.style.color = "#16a34a";
-    statusMsg.innerText = "STK Push sent! Please enter your M-Pesa PIN on your phone. SMS ticket will follow.";
-  })
-  .catch(error => {
-    statusMsg.style.color = "#dc2626";
-    statusMsg.innerText = "Failed to trigger payment. Please try again.";
-  });
-  */
-
-  // DEMO SIMULATION (For testing interface directly on GitHub Pages)
-  setTimeout(() => {
-    statusMsg.style.color = "#16a34a";
-    statusMsg.innerText = `STK Push sent to ${phone}! Complete payment on your phone to receive your SMS E-Ticket for Seat ${selectedSeatNumber}.`;
-  }, 1500);
+if (!$accessToken) {
+    echo json_encode(["status" => "error", "message" => "Failed to generate Daraja access token. Verify Consumer Key and Secret."]);
+    exit;
 }
+
+// ------------------------------------------------------------------
+// 4. GENERATE STK PUSH PASSWORD & PAYLOAD
+// ------------------------------------------------------------------
+$Timestamp = date('YmdHis');
+$Password  = base64_encode($BusinessShortCode . $Passkey . $Timestamp);
+
+$stkHeader = [
+    'Content-Type: application/json',
+    'Authorization: Bearer ' . $accessToken
+];
+
+$stkPayload = [
+    'BusinessShortCode' => (int)$BusinessShortCode,
+    'Password'          => $Password,
+    'Timestamp'         => $Timestamp,
+    'TransactionType'   => 'CustomerPayBillOnline',
+    'Amount'            => (int)$amount,
+    'PartyA'            => (int)$phone,
+    'PartyB'            => (int)$PartyB,
+    'PhoneNumber'       => (int)$phone,
+    'CallBackURL'       => $CallBackURL,
+    'AccountReference'  => $AccountReference,
+    'TransactionDesc'   => $TransactionDesc
+];
+
+// ------------------------------------------------------------------
+// 5. INITIATE STK PUSH REQUEST TO SAFARICOM
+// ------------------------------------------------------------------
+$ch = curl_init($stkPushUrl);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $stkHeader);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($stkPayload));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$stkResponse = curl_exec($ch);
+curl_close($ch);
+
+$resData = json_decode($stkResponse, true);
+
+// ------------------------------------------------------------------
+// 6. SAVE PENDING BOOKING & RESPOND TO FRONTEND
+// ------------------------------------------------------------------
+if (isset($resData['ResponseCode']) && $resData['ResponseCode'] == "0") {
+    
+    // Save pending seat booking mapped to user phone so callback.php can access it
+    $bookingFile = "pending_bookings.json";
+    $pendingBookings = file_exists($bookingFile) ? json_decode(file_get_contents($bookingFile), true) : [];
+    
+    $pendingBookings[$phone] = [
+        "route"  => $route,
+        "date"   => $date,
+        "seat"   => $seat,
+        "amount" => $amount,
+        "time"   => time()
+    ];
+    
+    file_put_contents($bookingFile, json_encode($pendingBookings));
+
+    echo json_encode([
+        "status" => "success",
+        "message" => "STK Push sent successfully.",
+        "CheckoutRequestID" => $resData['CheckoutRequestID']
+    ]);
+} else {
+    echo json_encode([
+        "status" => "error",
+        "message" => $resData['CustomerMessage'] ?? $resData['ResponseDescription'] ?? "STK Push request failed."
+    ]);
+}
+?>
