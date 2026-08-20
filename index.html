@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eazy Coach Bus Booking</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="booking-container">
+    <h2>Eazy Coach Ticket Booking</h2>
+
+    <!-- Step 1: Select Route & Date -->
+    <div class="form-group">
+      <label for="route">Travel Route</label>
+      <select id="route" onchange="updateFare()">
+        <option value="">Select Route...</option>
+        <option value="Nairobi-Kisumu" data-fare="1750">Nairobi ➔ Kisumu (KES 1,750)</option>
+        <option value="Nairobi-Busia" data-fare="1800">Nairobi ➔ Busia (KES 1,800)</option>
+        <option value="Nairobi-Eldoret" data-fare="1550">Nairobi ➔ Eldoret (KES 1,550)</option>
+        <option value="Nairobi-Kakamega" data-fare="1650">Nairobi ➔ Kakamega (KES 1,650)</option>
+        <option value="Nairobi-Kitale" data-fare="1700">Nairobi ➔ Kitale (KES 1,700)</option>
+        <option value="Nairobi-Malaba" data-fare="1750">Nairobi ➔ Malaba (KES 1,750)</option>
+        <option value="Nairobi-Sirare" data-fare="1450">Nairobi ➔ Sirare (KES 1,450)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Travel Date</label>
+      <input type="date" id="date" />
+    </div>
+
+    <!-- Step 2: Interactive Seat Picker -->
+    <div class="seat-picker">
+      <p>Select Your Seat: <span id="selected-seat-text">None</span></p>
+      <div class="bus-grid">
+        <button class="seat" onclick="selectSeat(this, '1A')">1A</button>
+        <button class="seat" onclick="selectSeat(this, '1B')">1B</button>
+        <div class="aisle"></div>
+        <button class="seat" onclick="selectSeat(this, '1C')">1C</button>
+        <button class="seat" onclick="selectSeat(this, '1D')">1D</button>
+
+        <button class="seat" onclick="selectSeat(this, '2A')">2A</button>
+        <button class="seat" onclick="selectSeat(this, '2B')">2B</button>
+        <div class="aisle"></div>
+        <button class="seat" onclick="selectSeat(this, '2C')">2C</button>
+        <button class="seat" onclick="selectSeat(this, '2D')">2D</button>
+
+        <button class="seat" onclick="selectSeat(this, '3A')">3A</button>
+        <button class="seat" onclick="selectSeat(this, '3B')">3B</button>
+        <div class="aisle"></div>
+        <button class="seat" onclick="selectSeat(this, '3C')">3C</button>
+        <button class="seat" onclick="selectSeat(this, '3D')">3D</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Payment Section -->
+    <div class="form-group">
+      <label for="phone">M-Pesa Phone Number</label>
+      <input type="tel" id="phone" placeholder="e.g. 254712345678" />
+    </div>
+
+    <div class="fare-total">
+      <p>Total Amount: <strong id="total-fare">KES 0</strong></p>
+    </div>
+
+    <button class="btn-pay" onclick="triggerMpesaPayment()">Pay via M-PESA</button>
+    <p id="status-msg"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
