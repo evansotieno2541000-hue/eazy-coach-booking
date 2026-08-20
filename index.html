@@ -1,557 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eazy Coach Modern Booking Portal</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    /* Full Background Page setup */
-    body {
-      background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                  url('bus-bg.png') center/cover no-repeat fixed;
-      color: #0f172a;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Top Promo Banner (Red Accent) */
-    .promo-banner {
-      background: linear-gradient(90deg, #dc2626, #b91c1c);
-      color: #ffffff;
-      text-align: center;
-      padding: 10px 15px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    /* Hero Section (White Container Layout) */
-    .hero {
-      padding: 50px 20px 30px 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 38px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .hero h1 span {
-      color: #dc2626; /* Blue changed to Red */
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #475569;
-      max-width: 600px;
-      margin: 0 auto 30px auto;
-    }
-
-    .features-grid {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-
-    .feature-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      padding: 15px 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-    }
-
-    .feature-card h4 {
-      color: #dc2626; /* Red text */
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-
-    .feature-card p {
-      font-size: 13px;
-      color: #475569;
-      margin: 0;
-    }
-
-    /* Main Content Wrapper */
-    .main-wrapper {
-      max-width: 1100px;
-      margin: 10px auto 40px auto;
-      padding: 0 20px;
-      width: 100%;
-      display: flex;
-      gap: 30px;
-      z-index: 10;
-      flex-wrap: wrap;
-    }
-
-    .info-side {
-      flex: 1;
-      min-width: 300px;
-      padding-top: 20px;
-    }
-
-    .info-side h2 {
-      font-size: 28px;
-      color: #0f172a;
-      margin-bottom: 15px;
-    }
-
-    .info-side p {
-      color: #334155;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .benefits-list {
-      list-style: none;
-    }
-
-    .benefits-list li {
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      color: #1e293b;
-      font-weight: 500;
-    }
-
-    .benefits-list .icon {
-      width: 28px;
-      height: 28px;
-      background: #fee2e2;
-      color: #dc2626;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    /* Booking Card (White background) */
-    .booking-card {
-      flex: 1.2;
-      min-width: 320px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-
-    .booking-card h3 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      color: #0f172a;
-      border-bottom: 2px solid #f1f5f9;
-      padding-bottom: 10px;
-    }
-
-    .form-step {
-      margin-bottom: 20px;
-    }
-
-    .form-step label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    select, input[type="date"], input[type="tel"] {
-      width: 100%;
-      padding: 12px 15px;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      color: #0f172a;
-      font-size: 15px;
-      outline: none;
-    }
-
-    select:focus, input:focus {
-      border-color: #dc2626;
-    }
-
-    /* Bus Cabin Styling (White Section) */
-    .seat-section {
-      background: #f8fafc;
-      padding: 20px;
-      border-radius: 16px;
-      border: 2px solid #e2e8f0;
-      margin-bottom: 20px;
-    }
-
-    .seat-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .seat-header span {
-      font-size: 14px;
-      color: #dc2626; /* Red text */
-      font-weight: 700;
-    }
-
-    .driver-row {
-      display: flex;
-      justify-content: flex-end;
-      padding-bottom: 12px;
-      margin-bottom: 12px;
-      border-bottom: 1px dashed #cbd5e1;
-    }
-
-    .driver-seat {
-      background: #e2e8f0;
-      color: #475569;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    /* 45-Seat Scrollable Bus Grid */
-    .bus-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      max-height: 310px;
-      overflow-y: auto;
-      padding-right: 5px;
-    }
-
-    .bus-grid::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .bus-grid::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 10px;
-    }
-
-    .seat {
-      padding: 10px 0;
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      color: #1e293b;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 12px;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s;
-    }
-
-    .seat:hover {
-      background: #fee2e2;
-      border-color: #dc2626;
-    }
-
-    .seat.selected {
-      background: #dc2626; /* Red Selection */
-      color: #ffffff;
-      border-color: #b91c1c;
-      box-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
-    }
-
-    .aisle {
-      visibility: hidden;
-    }
-
-    .legend {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 15px;
-      font-size: 12px;
-      color: #64748b;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .legend-box {
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
-    }
-
-    .legend-box.available { background: #ffffff; border: 1px solid #cbd5e1; }
-    .legend-box.selected-box { background: #dc2626; }
-
-    /* Total Fare Box */
-    .fare-box {
-      background: #fef2f2;
-      border: 1px solid #fca5a5;
-      padding: 15px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .fare-box label {
-      color: #991b1b;
-      font-size: 14px;
-      margin: 0;
-    }
-
-    .fare-box span {
-      font-size: 22px;
-      font-weight: 800;
-      color: #dc2626;
-    }
-
-    .btn-pay {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(90deg, #16a34a, #15803d);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
-    }
-
-    .btn-pay:hover {
-      opacity: 0.9;
-    }
-
-    #status-msg {
-      margin-top: 15px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #475569;
-      font-size: 13px;
-      margin-top: auto;
-      background: rgba(255, 255, 255, 0.8);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eazy Coach - Booking & Courier Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 20px;
+        }
+        .main-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            background: #004085;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 14px 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .tab-btn.active {
+            background: #007bff;
+            border-bottom: 4px solid #ffc107;
+        }
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* Shared Form Elements */
+        .value-props {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: bold;
+            color: #004085;
+            background: #eef2ff;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #222;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+        .form-group.half {
+            flex: 1;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .fare-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f3f5;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+        .pay-btn {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .pay-btn:hover {
+            background-color: #218838;
+        }
+        /* Bus Seat Grid Styles */
+        .bus-container {
+            border: 2px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+            margin-bottom: 15px;
+        }
+        .driver-cabin {
+            background: #e9ecef;
+            padding: 6px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 13px;
+            text-align: center;
+        }
+        .seat-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .seat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .seat-group {
+            display: flex;
+            gap: 6px;
+        }
+        .aisle {
+            width: 25px;
+        }
+        .seat {
+            width: 32px;
+            height: 32px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .seat.selected {
+            background-color: #007bff;
+        }
+        .seat-legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .box {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+        .box.available { background: #28a745; }
+        .box.selected { background: #007bff; }
+    </style>
 </head>
 <body>
 
-  <!-- Top Announcement -->
-  <div class="promo-banner">
-    ⚡ Fast, Safe & Reliable Travel Across Kenya | Direct M-Pesa Integration
-  </div>
-
-  <!-- Hero Header -->
-  <div class="hero">
-    <h1>Travel Comfortably with <span>Eazy Coach</span></h1>
-    <p>Book your preferred bus seats in seconds with instant M-Pesa STK Push payment and automatic SMS ticket confirmation.</p>
-    
-    <div class="features-grid">
-      <div class="feature-card">
-        <h4>⚡ Instant STK Push</h4>
-        <p>Direct M-Pesa PIN prompt</p>
-      </div>
-      <div class="feature-card">
-        <h4>💺 Live Seat Picker</h4>
-        <p>Choose your exact seat</p>
-      </div>
-      <div class="feature-card">
-        <h4>📱 SMS E-Ticket</h4>
-        <p>Sent directly to your phone</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Body Section -->
-  <div class="main-wrapper">
-    
-    <!-- Left Advertising Column -->
-    <div class="info-side">
-      <h2>Why Book With Eazy Coach?</h2>
-      <p>We connect major Kenyan hubs with scheduled daily departures, ultimate passenger comfort, and transparent pricing.</p>
-      
-      <ul class="benefits-list">
-        <li><div class="icon">✓</div> Guaranteed Seat Reservations</li>
-        <li><div class="icon">✓</div> Free Onboard Wi-Fi & Charging Outlets</li>
-        <li><div class="icon">✓</div> Instant M-Pesa Payment Security</li>
-        <li><div class="icon">✓</div> 24/7 Customer Support Assistance</li>
-      </ul>
+<div class="main-container">
+    <!-- Tab Navigation Bar -->
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab(event, 'busTab')">🚌 Book Bus</button>
+        <button class="tab-btn" onclick="switchTab(event, 'parcelTab')">📦 Parcels</button>
+        <button class="tab-btn" onclick="switchTab(event, 'hireTab')">🚐 Bus Hire</button>
     </div>
 
-    <!-- Right Interactive Form Column -->
-    <div class="booking-card">
-      <h3>Select Trip & Book</h3>
+    <!-- TAB 1: BUS SEAT BOOKING -->
+    <div id="busTab" class="tab-content active">
+        <h2>Book Your Bus Ticket</h2>
+        <p class="subtitle">Select your route, pick a seat (45 Seater), and pay via M-Pesa.</p>
+        
+        <form id="busBookingForm">
+            <div class="form-group">
+                <label>Select Route:</label>
+                <select id="routeSelect" class="form-control" required>
+                    <option value="Nairobi - Kisumu" data-price="1200">Nairobi ➔ Kisumu (KES 1,200)</option>
+                    <option value="Nairobi - Eldoret" data-price="1000">Nairobi ➔ Eldoret (KES 1,000)</option>
+                    <option value="Nairobi - Mombasa" data-price="1500">Nairobi ➔ Mombasa (KES 1,500)</option>
+                    <option value="Nairobi - Nakuru" data-price="600">Nairobi ➔ Nakuru (KES 600)</option>
+                </select>
+            </div>
 
-      <!-- Route Selector -->
-      <div class="form-step">
-        <label for="route">1. Select Travel Route</label>
-        <select id="route" onchange="updateFare()">
-          <option value="">Choose Destination...</option>
-          <option value="Nairobi-Kisumu" data-fare="1750">Nairobi ➔ Kisumu (KES 1,750)</option>
-          <option value="Nairobi-Busia" data-fare="1800">Nairobi ➔ Busia (KES 1,800)</option>
-          <option value="Nairobi-Eldoret" data-fare="1550">Nairobi ➔ Eldoret (KES 1,550)</option>
-          <option value="Nairobi-Kakamega" data-fare="1650">Nairobi ➔ Kakamega (KES 1,650)</option>
-          <option value="Nairobi-Kitale" data-fare="1700">Nairobi ➔ Kitale (KES 1,700)</option>
-          <option value="Nairobi-Malaba" data-fare="1750">Nairobi ➔ Malaba (KES 1,750)</option>
-          <option value="Nairobi-Sirare" data-fare="1450">Nairobi ➔ Sirare (KES 1,450)</option>
-        </select>
-      </div>
+            <div class="form-group">
+                <label>Travel Date:</label>
+                <input type="date" id="busDate" class="form-control" required>
+            </div>
 
-      <!-- Date Selector -->
-      <div class="form-step">
-        <label for="date">2. Select Travel Date</label>
-        <input type="date" id="date" />
-      </div>
+            <!-- 45 Seat Layout (2 left, Aisle, 3 right) -->
+            <div class="form-group">
+                <label>Choose Seat (Front-Facing):</label>
+                <div class="bus-container">
+                    <div class="driver-cabin">Front / Driver Cabin</div>
+                    <div id="seatGrid" class="seat-grid"></div>
+                    <div class="seat-legend">
+                        <span class="legend-item"><span class="box available"></span> Available</span>
+                        <span class="legend-item"><span class="box selected"></span> Selected</span>
+                    </div>
+                </div>
+                <input type="text" id="selectedSeatNumber" class="form-control" readonly placeholder="Click a seat above" required style="background:#e9ecef; text-align:center; font-weight:bold;">
+            </div>
 
-      <!-- Realistic 45-Seat Bus Cabin -->
-      <div class="form-step">
-        <label>3. Select Preferred Seat (45 Seats)</label>
-        <div class="seat-section">
-          <div class="seat-header">
-            <span>Bus Cabin Layout</span>
-            <span id="selected-seat-text">Selected: None</span>
-          </div>
+            <div class="form-group">
+                <label>M-Pesa Phone Number:</label>
+                <input type="tel" id="busPhone" class="form-control" placeholder="2547XXXXXXXX" required>
+            </div>
 
-          <div class="driver-row">
-            <div class="driver-seat">🚘 Driver</div>
-          </div>
+            <div class="fare-display">
+                <span>Total Bus Fare:</span>
+                <strong id="busTotalDisplay">KES 1,200.00</strong>
+            </div>
 
-          <div class="bus-grid">
-            <!-- Row 1 -->
-            <button class="seat" onclick="selectSeat(this, '1A')">1A</button>
-            <button class="seat" onclick="selectSeat(this, '1B')">1B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '1C')">1C</button>
-            <button class="seat" onclick="selectSeat(this, '1D')">1D</button>
+            <button type="button" id="payBusBtn" class="pay-btn">Pay for Ticket via M-Pesa</button>
+        </form>
+    </div>
 
-            <!-- Row 2 -->
-            <button class="seat" onclick="selectSeat(this, '2A')">2A</button>
-            <button class="seat" onclick="selectSeat(this, '2B')">2B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '2C')">2C</button>
-            <button class="seat" onclick="selectSeat(this, '2D')">2D</button>
+    <!-- TAB 2: PARCELS & COURIER -->
+    <div id="parcelTab" class="tab-content">
+        <h2>Parcel & Courier Services</h2>
+        <p class="subtitle">Secure delivery for documents and packages across branches.</p>
+        
+        <form id="parcelForm">
+            <div class="form-group">
+                <label>Package Category & Size:</label>
+                <select id="parcelSize" class="form-control" required>
+                    <optgroup label="Courier Charges Guide (Documents)">
+                        <option value="Small Envelopes" data-price="300">Small Envelopes (KES 300.00)</option>
+                        <option value="Big Envelopes with documents" data-price="350">Big Envelopes with documents (KES 350.00)</option>
+                        <option value="3D Package" data-price="450">3D Package (KES 450.00)</option>
+                        <option value="Kampala Letters" data-price="400">Kampala Letters (KES 400.00)</option>
+                    </optgroup>
+                    <optgroup label="Parcels (Weight & Volume Guide)">
+                        <option value="0-7 Kgs" data-price="350">0 - 7 Kgs (KES 350.00)</option>
+                        <option value="8-10 Kgs" data-price="400">8 - 10 Kgs (KES 400.00)</option>
+                        <option value="11-15 Kgs" data-price="500">11 - 15 Kgs (KES 500.00)</option>
+                        <option value="16-19 Kgs" data-price="550">16 - 19 Kgs (KES 550.00)</option>
+                        <option value="20-25 Kgs" data-price="650">20 - 25 Kgs (KES 650.00)</option>
+                    </optgroup>
+                </select>
+            </div>
 
-            <!-- Row 3 -->
-            <button class="seat" onclick="selectSeat(this, '3A')">3A</button>
-            <button class="seat" onclick="selectSeat(this, '3B')">3B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '3C')">3C</button>
-            <button class="seat" onclick="selectSeat(this, '3D')">3D</button>
+            <div class="form-group">
+                <label>Receiver's Phone Number:</label>
+                <input type="tel" id="receiverPhone" class="form-control" placeholder="2547XXXXXXXX" required>
+            </div>
 
-            <!-- Row 4 -->
-            <button class="seat" onclick="selectSeat(this, '4A')">4A</button>
-            <button class="seat" onclick="selectSeat(this, '4B')">4B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '4C')">4C</button>
-            <button class="seat" onclick="selectSeat(this, '4D')">4D</button>
+            <div class="form-group">
+                <label>Your M-Pesa Payment Number:</label>
+                <input type="tel" id="parcelPayPhone" class="form-control" placeholder="2547XXXXXXXX" required>
+            </div>
 
-            <!-- Row 5 -->
-            <button class="seat" onclick="selectSeat(this, '5A')">5A</button>
-            <button class="seat" onclick="selectSeat(this, '5B')">5B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '5C')">5C</button>
-            <button class="seat" onclick="selectSeat(this, '5D')">5D</button>
+            <div class="fare-display">
+                <span>Total Courier Fee:</span>
+                <strong id="parcelTotalDisplay">KES 300.00</strong>
+            </div>
 
-            <!-- Row 6 -->
-            <button class="seat" onclick="selectSeat(this, '6A')">6A</button>
-            <button class="seat" onclick="selectSeat(this, '6B')">6B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '6C')">6C</button>
-            <button class="seat" onclick="selectSeat(this, '6D')">6D</button>
+            <button type="button" id="payParcelBtn" class="pay-btn">Pay for Parcel via M-Pesa</button>
+        </form>
+    </div>
 
-            <!-- Row 7 -->
-            <button class="seat" onclick="selectSeat(this, '7A')">7A</button>
-            <button class="seat" onclick="selectSeat(this, '7B')">7B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '7C')">7C</button>
-            <button class="seat" onclick="selectSeat(this, '7D')">7D</button>
-
-            <!-- Row 8 -->
-            <button class="seat" onclick="selectSeat(this, '8A')">8A</button>
-            <button class="seat" onclick="selectSeat(this, '8B')">8B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '8C')">8C</button>
-            <button class="seat" onclick="selectSeat(this, '8D')">8D</button>
-
-            <!-- Row 9 -->
-            <button class="seat" onclick="selectSeat(this, '9A')">9A</button>
-            <button class="seat" onclick="selectSeat(this, '9B')">9B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '9C')">9C</button>
-            <button class="seat" onclick="selectSeat(this, '9D')">9D</button>
-
-            <!-- Row 10 -->
-            <button class="seat" onclick="selectSeat(this, '10A')">10A</button>
-            <button class="seat" onclick="selectSeat(this, '10B')">10B</button>
-            <div class="aisle"></div>
-            <button class="seat" onclick="selectSeat(this, '10C')">10C</button>
-            <button class="seat" onclick="selectSeat(this, '10D')">10D</button>
-
-            <!-- Back Row (5 Seats Continuous) -->
-            <button class="seat" onclick="selectSeat(this, '11A')">11A</button>
-            <button class="seat" onclick="selectSeat(this, '11B')">11B</button>
-            <button class="seat" onclick="selectSeat(this, '11C')">11C</button>
-            <button class="seat" onclick="selectSeat(this, '11D')">11D</button>
-            <button class="seat" onclick="selectSeat(this, '11E')">11E</button>
-          </div>
-
-          <div class="legend">
-            <div class="legend-item"><div class="legend-box available"></div> Available</div>
-            <div class="legend-item"><div class="legend-box selected-box"></div> Selected</div>
-          </div>
+    <!-- TAB 3: BUS HIRE & CHARTER -->
+    <div id="hireTab" class="tab-content">
+        <div class="value-props">
+            <span>🛡️ Verified Drivers</span>
+            <span>💰 Great Value</span>
+            <span>⭐ Best Support</span>
         </div>
-      </div>
+        <h2>Bus Hire & Charter Search</h2>
+        <p class="subtitle">Book a private coach for your corporate event, school trip, or function.</p>
 
-      <!-- Phone Number -->
-      <div class="form-step">
-        <label for="phone">4. M-Pesa Phone Number</label>
-        <input type="tel" id="phone" placeholder="e.g. 254712345678" />
-      </div>
+        <form id="busSearchForm">
+            <div class="form-group">
+                <label>Full Name / Company Name:</label>
+                <input type="text" id="hireName" class="form-control" placeholder="Enter name or company" required>
+            </div>
 
-      <!-- Total & Action -->
-      <div class="fare-box">
-        <label>Total Fare:</label>
-        <span id="total-fare">KES 0</span>
-      </div>
+            <div class="form-row">
+                <div class="form-group half">
+                    <label>Pick-up Location:</label>
+                    <input type="text" id="pickupLocation" class="form-control" placeholder="e.g., Nairobi" required>
+                </div>
+                <div class="form-group half">
+                    <label>Drop-off Location:</label>
+                    <input type="text" id="dropoffLocation" class="form-control" placeholder="e.g., Nakuru" required>
+                </div>
+            </div>
 
-      <button class="btn-pay" onclick="triggerMpesaPayment()">Pay via M-PESA</button>
-      <p id="status-msg"></p>
+            <div class="form-row">
+                <div class="form-group half">
+                    <label>Pick-up Date:</label>
+                    <input type="date" id="pickupDate" class="form-control" required>
+                </div>
+                <div class="form-group half">
+                    <label>Pick-up Time:</label>
+                    <select id="pickupTime" class="form-control time-slot" required></select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group half">
+                    <label>Drop-off Date:</label>
+                    <input type="date" id="dropoffDate" class="form-control" required>
+                </div>
+                <div class="form-group half">
+                    <label>Drop-off Time:</label>
+                    <select id="dropoffTime" class="form-control time-slot" required></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Bus Capacity / Type:</label>
+                <select id="hireBusType" class="form-control" required>
+                    <option value="45 Seater Executive Coach" data-deposit="10000">45-Seater Executive Coach (Deposit: KES 10,000)</option>
+                    <option value="33 Seater Midibus" data-deposit="7500">33-Seater Midibus (Deposit: KES 7,500)</option>
+                    <option value="14 Seater Shuttle" data-deposit="3000">14-Seater Shuttle (Deposit: KES 3,000)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number:</label>
+                <input type="tel" id="hireMobile" class="form-control" placeholder="2547XXXXXXXX" required>
+            </div>
+
+            <div class="fare-display">
+                <span>Required Deposit:</span>
+                <strong id="hireDepositDisplay">KES 10,000.00</strong>
+            </div>
+
+            <button type="button" id="payHireBtn" class="pay-btn">Pay Hire Deposit via M-Pesa</button>
+        </form>
     </div>
+</div>
 
-  </div>
+<script>
+    // Tab Management
+    function switchTab(evt, tabId) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
 
-  <footer>
-    © 2026 Eazy Coach Express. All Rights Reserved.
-  </footer>
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- 1. GENERATE 45 SEATS (9 rows * 5 seats) ---
+        const seatGrid = document.getElementById('seatGrid');
+        const totalRows = 9; 
+        let selectedSeatNum = null;
 
-  <script src="script.js"></script>
+        for (let r = 1; r <= totalRows; r++) {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'seat-row';
+
+            // Left Side: 2 seats (A, B)
+            const leftGroup = document.createElement('div');
+            leftGroup.className = 'seat-group';
+            ['A', 'B'].forEach(col => {
+                leftGroup.appendChild(createSeatBtn(`${r}${col}`));
+            });
+
+            // Aisle
+            const aisle = document.createElement('div');
+            aisle.className = 'aisle';
+
+            // Right Side: 3 seats (C, D, E)
+            const rightGroup = document.createElement('div');
+            rightGroup.className = 'seat-group';
+            ['C', 'D', 'E'].forEach(col => {
+                rightGroup.appendChild(createSeatBtn(`${r}${col}`));
+            });
+
+            rowDiv.appendChild(leftGroup);
+            rowDiv.appendChild(aisle);
+            rowDiv.appendChild(rightGroup);
+            seatGrid.appendChild(rowDiv);
+        }
+
+        function createSeatBtn(seatNum) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'seat';
+            btn.textContent = seatNum;
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.seat.selected').forEach(s => s.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedSeatNum = seatNum;
+                document.getElementById('selectedSeatNumber').value = `Seat Selected: ${seatNum}`;
+            });
+            return btn;
+        }
+
+        // --- 2. FARE & PRICE CALCULATORS ---
+        const routeSelect = document.getElementById('routeSelect');
+        const busTotalDisplay = document.getElementById('busTotalDisplay');
+        function updateBusFare() {
+            const price = routeSelect.options[routeSelect.selectedIndex].getAttribute('data-price');
+            busTotalDisplay.textContent = `KES ${parseInt(price).toLocaleString()}.00`;
+            return price;
+        }
+        routeSelect.addEventListener('change', updateBusFare);
+        updateBusFare();
+
+        const parcelSize = document.getElementById('parcelSize');
+        const parcelTotalDisplay = document.getElementById('parcelTotalDisplay');
+        function updateParcelFee() {
+            const price = parcelSize.options[parcelSize.selectedIndex].getAttribute('data-price');
+            parcelTotalDisplay.textContent = `KES ${parseInt(price).toLocaleString()}.00`;
+            return price;
+        }
+        parcelSize.addEventListener('change', updateParcelFee);
+
+        const hireBusType = document.getElementById('hireBusType');
+        const hireDepositDisplay = document.getElementById('hireDepositDisplay');
+        function updateHireDeposit() {
+            const deposit = hireBusType.options[hireBusType.selectedIndex].getAttribute('data-deposit');
+            hireDepositDisplay.textContent = `KES ${parseInt(deposit).toLocaleString()}.00`;
+            return deposit;
+        }
+        hireBusType.addEventListener('change', updateHireDeposit);
+
+        // Populate Time Slots (12:00 AM to 11:30 PM)
+        const timeSlots = [];
+        for (let h = 0; h < 24; h++) {
+            for (let m = 0; m < 60; m += 30) {
+                let hour = h % 12 === 0 ? 12 : h % 12;
+                let minute = m === 0 ? "00" : m;
+                let ampm = h < 12 ? "AM" : "PM";
+                timeSlots.push(`${hour}:${minute} ${ampm}`);
+            }
+        }
+        const timeDropdowns = document.querySelectorAll('.time-slot');
+        timeDropdowns.forEach(dropdown => {
+            timeSlots.forEach(t => dropdown.add(new Option(t, t)));
+        });
+
+        // --- 3. M-PESA STK PUSH HANDLERS ---
+        async function triggerSTK(endpointData, buttonElement, originalText) {
+            buttonElement.textContent = 'Processing STK Push...';
+            buttonElement.disabled = true;
+
+            try {
+                const response = await fetch('stkpush.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(endpointData)
+                });
+                const data = await response.json();
+                if (data.status === 'success') {
+                    alert('STK Push sent successfully! Check your phone to complete payment.');
+                } else {
+                    alert('Error: ' + (data.message || 'Payment failed'));
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Connection error. Check your server script.');
+            } finally {
+                buttonElement.textContent = originalText;
+                buttonElement.disabled = false;
+            }
+        }
+
+        // Bus Pay Button
+        document.getElementById('payBusBtn').addEventListener('click', function() {
+            const phone = document.getElementById('busPhone').value;
+            const date = document.getElementById('busDate').value;
+            if (!phone || !date || !selectedSeatNum) {
+                alert('Please select a travel date, choose a seat, and enter your M-Pesa phone number.');
+                return;
+            }
+            triggerSTK({
+                phone: phone,
+                amount: updateBusFare(),
+                route: routeSelect.value,
+                date: date,
+                seat: selectedSeatNum
+            }, this, 'Pay for Ticket via M-Pesa');
+        });
+
+        // Parcel Pay Button
+        document.getElementById('payParcelBtn').addEventListener('click', function() {
+            const phone = document.getElementById('parcelPayPhone').value;
+            if (!phone) {
+                alert('Please enter your M-Pesa payment phone number.');
+                return;
+            }
+            triggerSTK({
+                phone: phone,
+                amount: updateParcelFee(),
+                route: 'Parcel Delivery Service',
+                date: new Date().toISOString().split('T')[0],
+                seat: `Parcel: ${parcelSize.value}`
+            }, this, 'Pay for Parcel via M-Pesa');
+        });
+
+        // Hire Pay Button
+        document.getElementById('payHireBtn').addEventListener('click', function() {
+            const phone = document.getElementById('hireMobile').value;
+            const date = document.getElementById('pickupDate').value;
+            const name = document.getElementById('hireName').value;
+            if (!phone || !date || !name) {
+                alert('Please fill in your name, pick-up date, and mobile number.');
+                return;
+            }
+            triggerSTK({
+                phone: phone,
+                amount: updateHireDeposit(),
+                route: `Bus Hire: ${document.getElementById('pickupLocation').value} to ${document.getElementById('dropoffLocation').value}`,
+                date: date,
+                seat: `Charter: ${hireBusType.value}`
+            }, this, 'Pay Hire Deposit via M-Pesa');
+        });
+    });
+</script>
+
 </body>
 </html>
