@@ -56,7 +56,7 @@ if ($resultCode == 0) {
 
 function sendSms($recipients, $message) {
     $username = 'YOUR_AFRICASTALKING_USERNAME'; // e.g., 'sandbox' or live username
-    $apiKey   = 'YOUR_AFRICASTALKING_API_KEY';  // Africa's Talking API Key
+    $apiKey   = 'atsk_a43cc08f07f7c5d290950e1b310f55aa64b64ce1465693584af1fbda11f39d0b17017863';  // Africa's Talking API Key
 
     $url = 'https://api.africastalking.com/version1/messaging'; // Use https://api.sandbox.africastalking.com/version1/messaging for testing
 
