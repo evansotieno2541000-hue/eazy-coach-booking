@@ -12,17 +12,19 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
+    /* Full Background Page setup */
     body {
-      background: #0f172a;
-      color: #f8fafc;
+      background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                  url('bus-bg.png') center/cover no-repeat fixed;
+      color: #0f172a;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Top Promo Banner */
+    /* Top Promo Banner (Red Accent) */
     .promo-banner {
-      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      background: linear-gradient(90deg, #dc2626, #b91c1c);
       color: #ffffff;
       text-align: center;
       padding: 10px 15px;
@@ -31,35 +33,31 @@
       letter-spacing: 0.5px;
     }
 
-    /* Hero Section pointing directly to bus-bg.png */
+    /* Hero Section (White Container Layout) */
     .hero {
-      background: linear-gradient(180deg, rgba(15,23,42,0.7) 0%, #0f172a 100%), 
-                  url('bus-bg.png') center/cover no-repeat;
-      padding: 60px 20px;
+      padding: 50px 20px 30px 20px;
       text-align: center;
-      border-bottom: 1px solid #1e293b;
     }
 
     .hero h1 {
       font-size: 38px;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       margin-bottom: 12px;
       letter-spacing: -0.5px;
     }
 
     .hero h1 span {
-      color: #38bdf8;
+      color: #dc2626; /* Blue changed to Red */
     }
 
     .hero p {
       font-size: 18px;
-      color: #94a3b8;
+      color: #475569;
       max-width: 600px;
       margin: 0 auto 30px auto;
     }
 
-    /* Features Grid */
     .features-grid {
       display: flex;
       justify-content: center;
@@ -70,32 +68,32 @@
     }
 
     .feature-card {
-      background: rgba(30, 41, 59, 0.7);
-      border: 1px solid #334155;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       padding: 15px 25px;
       border-radius: 12px;
-      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       flex: 1;
       min-width: 200px;
       text-align: center;
     }
 
     .feature-card h4 {
-      color: #38bdf8;
+      color: #dc2626; /* Red text */
       font-size: 16px;
       margin-bottom: 5px;
     }
 
     .feature-card p {
       font-size: 13px;
-      color: #cbd5e1;
+      color: #475569;
       margin: 0;
     }
 
-    /* Main Layout Grid */
+    /* Main Content Wrapper */
     .main-wrapper {
       max-width: 1100px;
-      margin: -40px auto 40px auto;
+      margin: 10px auto 40px auto;
       padding: 0 20px;
       width: 100%;
       display: flex;
@@ -107,17 +105,17 @@
     .info-side {
       flex: 1;
       min-width: 300px;
-      padding-top: 50px;
+      padding-top: 20px;
     }
 
     .info-side h2 {
       font-size: 28px;
-      color: #ffffff;
+      color: #0f172a;
       margin-bottom: 15px;
     }
 
     .info-side p {
-      color: #94a3b8;
+      color: #334155;
       line-height: 1.6;
       margin-bottom: 25px;
     }
@@ -132,14 +130,15 @@
       align-items: center;
       gap: 12px;
       font-size: 15px;
-      color: #e2e8f0;
+      color: #1e293b;
+      font-weight: 500;
     }
 
     .benefits-list .icon {
       width: 28px;
       height: 28px;
-      background: #0369a1;
-      color: #38bdf8;
+      background: #fee2e2;
+      color: #dc2626;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -147,22 +146,22 @@
       font-weight: bold;
     }
 
-    /* Booking Card */
+    /* Booking Card (White background) */
     .booking-card {
-      flex: 1.1;
+      flex: 1.2;
       min-width: 320px;
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 20px;
       padding: 30px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     }
 
     .booking-card h3 {
       font-size: 22px;
       margin-bottom: 20px;
-      color: #ffffff;
-      border-bottom: 2px solid #334155;
+      color: #0f172a;
+      border-bottom: 2px solid #f1f5f9;
       padding-bottom: 10px;
     }
 
@@ -174,7 +173,7 @@
       display: block;
       font-size: 13px;
       font-weight: 600;
-      color: #94a3b8;
+      color: #64748b;
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -183,24 +182,24 @@
     select, input[type="date"], input[type="tel"] {
       width: 100%;
       padding: 12px 15px;
-      background: #0f172a;
-      border: 1px solid #334155;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-      color: #ffffff;
+      color: #0f172a;
       font-size: 15px;
       outline: none;
     }
 
     select:focus, input:focus {
-      border-color: #38bdf8;
+      border-color: #dc2626;
     }
 
-    /* Seat Picker Section */
+    /* Bus Cabin Styling (White Section) */
     .seat-section {
-      background: #0f172a;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid #334155;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 16px;
+      border: 2px solid #e2e8f0;
       margin-bottom: 20px;
     }
 
@@ -208,51 +207,107 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
 
     .seat-header span {
       font-size: 14px;
-      color: #38bdf8;
+      color: #dc2626; /* Red text */
       font-weight: 700;
     }
 
+    .driver-row {
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #cbd5e1;
+    }
+
+    .driver-seat {
+      background: #e2e8f0;
+      color: #475569;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* 45-Seat Scrollable Bus Grid */
     .bus-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 20px 1fr 1fr;
+      grid-template-columns: repeat(5, 1fr);
       gap: 8px;
+      max-height: 310px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .bus-grid::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .bus-grid::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
     }
 
     .seat {
       padding: 10px 0;
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #cbd5e1;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
       border-radius: 6px;
       font-weight: 600;
+      font-size: 12px;
       cursor: pointer;
       text-align: center;
+      transition: all 0.2s;
     }
 
     .seat:hover {
-      background: #334155;
+      background: #fee2e2;
+      border-color: #dc2626;
     }
 
     .seat.selected {
-      background: #0284c7;
+      background: #dc2626; /* Red Selection */
       color: #ffffff;
-      border-color: #38bdf8;
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+      border-color: #b91c1c;
+      box-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
     }
 
     .aisle {
-      width: 100%;
+      visibility: hidden;
     }
 
-    /* Fare Box & Button */
+    .legend {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-box {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+    }
+
+    .legend-box.available { background: #ffffff; border: 1px solid #cbd5e1; }
+    .legend-box.selected-box { background: #dc2626; }
+
+    /* Total Fare Box */
     .fare-box {
-      background: #092e42;
-      border: 1px solid #0369a1;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
       padding: 15px;
       border-radius: 8px;
       display: flex;
@@ -262,7 +317,7 @@
     }
 
     .fare-box label {
-      color: #93c5fd;
+      color: #991b1b;
       font-size: 14px;
       margin: 0;
     }
@@ -270,7 +325,7 @@
     .fare-box span {
       font-size: 22px;
       font-weight: 800;
-      color: #ffffff;
+      color: #dc2626;
     }
 
     .btn-pay {
@@ -300,9 +355,10 @@
     footer {
       text-align: center;
       padding: 20px;
-      color: #64748b;
+      color: #475569;
       font-size: 13px;
       margin-top: auto;
+      background: rgba(255, 255, 255, 0.8);
     }
   </style>
 </head>
@@ -375,32 +431,101 @@
         <input type="date" id="date" />
       </div>
 
-      <!-- Seat Grid -->
+      <!-- Realistic 45-Seat Bus Cabin -->
       <div class="form-step">
-        <label>3. Select Preferred Seat</label>
+        <label>3. Select Preferred Seat (45 Seats)</label>
         <div class="seat-section">
           <div class="seat-header">
-            <span>Choose Seat</span>
-            <span id="selected-seat-text">None</span>
+            <span>Bus Cabin Layout</span>
+            <span id="selected-seat-text">Selected: None</span>
           </div>
+
+          <div class="driver-row">
+            <div class="driver-seat">🚘 Driver</div>
+          </div>
+
           <div class="bus-grid">
+            <!-- Row 1 -->
             <button class="seat" onclick="selectSeat(this, '1A')">1A</button>
             <button class="seat" onclick="selectSeat(this, '1B')">1B</button>
             <div class="aisle"></div>
             <button class="seat" onclick="selectSeat(this, '1C')">1C</button>
             <button class="seat" onclick="selectSeat(this, '1D')">1D</button>
 
+            <!-- Row 2 -->
             <button class="seat" onclick="selectSeat(this, '2A')">2A</button>
             <button class="seat" onclick="selectSeat(this, '2B')">2B</button>
             <div class="aisle"></div>
             <button class="seat" onclick="selectSeat(this, '2C')">2C</button>
             <button class="seat" onclick="selectSeat(this, '2D')">2D</button>
 
+            <!-- Row 3 -->
             <button class="seat" onclick="selectSeat(this, '3A')">3A</button>
             <button class="seat" onclick="selectSeat(this, '3B')">3B</button>
             <div class="aisle"></div>
             <button class="seat" onclick="selectSeat(this, '3C')">3C</button>
             <button class="seat" onclick="selectSeat(this, '3D')">3D</button>
+
+            <!-- Row 4 -->
+            <button class="seat" onclick="selectSeat(this, '4A')">4A</button>
+            <button class="seat" onclick="selectSeat(this, '4B')">4B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '4C')">4C</button>
+            <button class="seat" onclick="selectSeat(this, '4D')">4D</button>
+
+            <!-- Row 5 -->
+            <button class="seat" onclick="selectSeat(this, '5A')">5A</button>
+            <button class="seat" onclick="selectSeat(this, '5B')">5B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '5C')">5C</button>
+            <button class="seat" onclick="selectSeat(this, '5D')">5D</button>
+
+            <!-- Row 6 -->
+            <button class="seat" onclick="selectSeat(this, '6A')">6A</button>
+            <button class="seat" onclick="selectSeat(this, '6B')">6B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '6C')">6C</button>
+            <button class="seat" onclick="selectSeat(this, '6D')">6D</button>
+
+            <!-- Row 7 -->
+            <button class="seat" onclick="selectSeat(this, '7A')">7A</button>
+            <button class="seat" onclick="selectSeat(this, '7B')">7B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '7C')">7C</button>
+            <button class="seat" onclick="selectSeat(this, '7D')">7D</button>
+
+            <!-- Row 8 -->
+            <button class="seat" onclick="selectSeat(this, '8A')">8A</button>
+            <button class="seat" onclick="selectSeat(this, '8B')">8B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '8C')">8C</button>
+            <button class="seat" onclick="selectSeat(this, '8D')">8D</button>
+
+            <!-- Row 9 -->
+            <button class="seat" onclick="selectSeat(this, '9A')">9A</button>
+            <button class="seat" onclick="selectSeat(this, '9B')">9B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '9C')">9C</button>
+            <button class="seat" onclick="selectSeat(this, '9D')">9D</button>
+
+            <!-- Row 10 -->
+            <button class="seat" onclick="selectSeat(this, '10A')">10A</button>
+            <button class="seat" onclick="selectSeat(this, '10B')">10B</button>
+            <div class="aisle"></div>
+            <button class="seat" onclick="selectSeat(this, '10C')">10C</button>
+            <button class="seat" onclick="selectSeat(this, '10D')">10D</button>
+
+            <!-- Back Row (5 Seats Continuous) -->
+            <button class="seat" onclick="selectSeat(this, '11A')">11A</button>
+            <button class="seat" onclick="selectSeat(this, '11B')">11B</button>
+            <button class="seat" onclick="selectSeat(this, '11C')">11C</button>
+            <button class="seat" onclick="selectSeat(this, '11D')">11D</button>
+            <button class="seat" onclick="selectSeat(this, '11E')">11E</button>
+          </div>
+
+          <div class="legend">
+            <div class="legend-item"><div class="legend-box available"></div> Available</div>
+            <div class="legend-item"><div class="legend-box selected-box"></div> Selected</div>
           </div>
         </div>
       </div>
