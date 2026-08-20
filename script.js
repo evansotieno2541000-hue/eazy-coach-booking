@@ -15,7 +15,7 @@ $AccountReference = 'EazyCoach';
 $TransactionDesc  = 'Bus Ticket Payment';
 
 // Live Callback URL pointing to your callback.php script
-$CallBackURL    = 'https://your-domain.com/callback.php'; 
+$CallBackURL    = '(https://your-subdomain.infinityfreeapp.com/callback.php)''; 
 
 // Daraja Sandbox Endpoints
 $authUrl    = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
