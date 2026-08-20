@@ -5,16 +5,16 @@ header("Content-Type: application/json");
 // ------------------------------------------------------------------
 // 1. DARAJA API CONFIGURATION
 // ------------------------------------------------------------------
-$consumerKey    = 'H4vPUbiGLZOA2u0XPQv6Ig0XCctW8yGAmjjmdPndP3ZDxBRf';       // Replace with your Consumer Key from Daraja Portal
-$consumerSecret = 'pExaZQquoyIenkBm3LLWjHKfcIxbQ7zsU2sGSJpfoKGd1l4SETzwpwRX26oY5onx';    // Replace with your Consumer Secret from Daraja Portal
-$BusinessShortCode = '174379';               // Default Sandbox Shortcode (PayBill)
-$Passkey        = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'; // Default Sandbox Passkey
+$consumerKey    = 'H4vPUbiGLZOA2u0XPQv6Ig0XCctW8yGAmjjmdPndP3ZDxBRf';
+$consumerSecret = 'pExaZQquoyIenkBm3LLWjHKfcIxbQ7zsU2sGSJpfoKGd1l4SETzwpwRX26oY5onx';
+$BusinessShortCode = '174379';
+$Passkey        = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
 
 $PartyB         = $BusinessShortCode;
 $AccountReference = 'EazyCoach';
 $TransactionDesc  = 'Bus Ticket Payment';
 
-// Live Callback URL on your PHP server
+// Replace with your actual live domain URL
 $CallBackURL    = 'https://your-domain.com/callback.php'; 
 
 // Daraja Sandbox Endpoints
@@ -24,7 +24,6 @@ $stkPushUrl = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 // ------------------------------------------------------------------
 // 2. CAPTURE & SANITIZE REQUEST DATA
 // ------------------------------------------------------------------
-// Accepts both application/x-www-form-urlencoded ($_POST) and raw JSON inputs
 $rawInput = file_get_contents('php://input');
 $jsonData = json_decode($rawInput, true);
 
@@ -113,7 +112,6 @@ $resData = json_decode($stkResponse, true);
 // ------------------------------------------------------------------
 if (isset($resData['ResponseCode']) && $resData['ResponseCode'] == "0") {
     
-    // Save pending seat booking mapped to user phone so callback.php can access it
     $bookingFile = "pending_bookings.json";
     $pendingBookings = file_exists($bookingFile) ? json_decode(file_get_contents($bookingFile), true) : [];
     
