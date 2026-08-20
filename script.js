@@ -1,58 +1,108 @@
-let selectedSeat = '';
-let selectedFare = 0;
+// State tracking variables
+let selectedSeatNumber = null;
+let currentFare = 0;
 
+/**
+ * Updates the total fare displayed based on the selected route.
+ */
 function updateFare() {
   const routeSelect = document.getElementById('route');
-  const option = routeSelect.options[routeSelect.selectedIndex];
-  selectedFare = option.getAttribute('data-fare') || 0;
-  document.getElementById('total-fare').innerText = `KES ${selectedFare}`;
+  const selectedOption = routeSelect.options[routeSelect.selectedIndex];
+  
+  // Extract custom data-fare attribute from selected route
+  currentFare = selectedOption.getAttribute('data-fare') || 0;
+  
+  const totalFareDisplay = document.getElementById('total-fare');
+
+  if (selectedSeatNumber && currentFare > 0) {
+    totalFareDisplay.innerText = `KES ${parseInt(currentFare).toLocaleString()}`;
+  } else if (currentFare > 0) {
+    totalFareDisplay.innerText = `KES ${parseInt(currentFare).toLocaleString()}`;
+  } else {
+    totalFareDisplay.innerText = `KES 0`;
+  }
 }
 
-function selectSeat(button, seatNum) {
-  document.querySelectorAll('.seat').forEach(btn => btn.classList.remove('selected'));
+/**
+ * Handles seat selection click events in the 45-seat bus grid.
+ */
+function selectSeat(button, seatNumber) {
+  // Clear 'selected' class from any previously selected seat
+  const allSeats = document.querySelectorAll('.seat');
+  allSeats.forEach(s => s.classList.remove('selected'));
+
+  // Highlight the clicked seat
   button.classList.add('selected');
-  selectedSeat = seatNum;
-  document.getElementById('selected-seat-text').innerText = seatNum;
+  selectedSeatNumber = seatNumber;
+
+  // Update UI indicators
+  document.getElementById('selected-seat-text').innerText = `Selected: ${seatNumber}`;
+  
+  if (currentFare > 0) {
+    document.getElementById('total-fare').innerText = `KES ${parseInt(currentFare).toLocaleString()}`;
+  }
 }
 
-async function triggerMpesaPayment() {
+/**
+ * Validates inputs and triggers the payment workflow.
+ */
+function triggerMpesaPayment() {
   const route = document.getElementById('route').value;
   const date = document.getElementById('date').value;
-  const phone = document.getElementById('phone').value;
+  const phone = document.getElementById('phone').value.trim();
   const statusMsg = document.getElementById('status-msg');
 
-  if (!route || !date || !selectedSeat || !phone) {
-    statusMsg.innerText = 'Please complete all fields and select a seat.';
-    statusMsg.style.color = '#ef4444';
+  // Input validation checks
+  if (!route) {
+    alert("Please select a travel route.");
+    return;
+  }
+  if (!date) {
+    alert("Please select a travel date.");
+    return;
+  }
+  if (!selectedSeatNumber) {
+    alert("Please select a preferred seat from the bus layout.");
+    return;
+  }
+  if (!phone || phone.length < 10) {
+    alert("Please enter a valid M-Pesa phone number (e.g. 254712345678 or 0712345678).");
     return;
   }
 
-  statusMsg.innerText = 'Sending M-Pesa STK push prompt...';
-  statusMsg.style.color = '#38bdf8';
+  // Display pending state
+  statusMsg.style.color = "#dc2626";
+  statusMsg.innerText = "Initiating M-Pesa STK Push prompt...";
 
-  try {
-    const response = await fetch('https://eazy-coach-booking.onrender.com/api/pay', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        phone: phone,
-        amount: selectedFare,
-        route: route,
-        seat: selectedSeat,
-        date: date
-      })
-    });
+  /*
+  // REAL BACKEND INTEGRATION:
+  // Uncomment and update this block once you upload stkpush.php to a PHP server
+  
+  fetch('https://YOUR-PHP-SERVER-URL.com/stkpush.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      phone: phone,
+      amount: currentFare,
+      route: route,
+      date: date,
+      seat: selectedSeatNumber
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    statusMsg.style.color = "#16a34a";
+    statusMsg.innerText = "STK Push sent! Please enter your M-Pesa PIN on your phone. SMS ticket will follow.";
+  })
+  .catch(error => {
+    statusMsg.style.color = "#dc2626";
+    statusMsg.innerText = "Failed to trigger payment. Please try again.";
+  });
+  */
 
-    const data = await response.json();
-    if (data.success) {
-      statusMsg.innerText = 'STK Push sent! Enter your PIN on your phone.';
-      statusMsg.style.color = '#22c55e';
-    } else {
-      statusMsg.innerText = 'Failed to initiate payment. Check phone number.';
-      statusMsg.style.color = '#ef4444';
-    }
-  } catch (err) {
-    statusMsg.innerText = 'Error connecting to backend server.';
-    statusMsg.style.color = '#ef4444';
-  }
+  // DEMO SIMULATION (For testing interface directly on GitHub Pages)
+  setTimeout(() => {
+    statusMsg.style.color = "#16a34a";
+    statusMsg.innerText = `STK Push sent to ${phone}! Complete payment on your phone to receive your SMS E-Ticket for Seat ${selectedSeatNumber}.`;
+  }, 1500);
 }
