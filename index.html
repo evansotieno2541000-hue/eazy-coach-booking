@@ -1,22 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eazy Coach | Modern Bus Booking & Ticketing</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eazy Coach Modern Booking Portal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Promo Banner */
+    .promo-banner {
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero Section with Online Bus Image */
+    .hero {
+      background: linear-gradient(180deg, rgba(15,23,42,0.7) 0%, #0f172a 100%), 
+                  url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200') center/cover no-repeat;
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 span {
+      color: #38bdf8;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .feature-card {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid #334155;
+      padding: 15px 25px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .feature-card h4 {
+      color: #38bdf8;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    /* Main Container with Two Columns */
+    .main-wrapper {
+      max-width: 1100px;
+      margin: -40px auto 40px auto;
+      padding: 0 20px;
+      width: 100%;
+      display: flex;
+      gap: 30px;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    .info-side {
+      flex: 1;
+      min-width: 300px;
+      padding-top: 50px;
+    }
+
+    .info-side h2 {
+      font-size: 28px;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    .info-side p {
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .benefits-list {
+      list-style: none;
+    }
+
+    .benefits-list li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: #e2e8f0;
+    }
+
+    .benefits-list .icon {
+      width: 28px;
+      height: 28px;
+      background: #0369a1;
+      color: #38bdf8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* Booking Form Card */
+    .booking-card {
+      flex: 1.1;
+      min-width: 320px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .booking-card h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    .form-step {
+      margin-bottom: 20px;
+    }
+
+    .form-step label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select, input[type="date"], input[type="tel"] {
+      width: 100%;
+      padding: 12px 15px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 15px;
+      outline: none;
+    }
+
+    select:focus, input:focus {
+      border-color: #38bdf8;
+    }
+
+    /* Seat Picker Layout */
+    .seat-section {
+      background: #0f172a;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      margin-bottom: 20px;
+    }
+
+    .seat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .seat-header span {
+      font-size: 14px;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .bus-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 20px 1fr 1fr;
+      gap: 8px;
+    }
+
+    .seat {
+      padding: 10px 0;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .seat:hover {
+      background: #334155;
+    }
+
+    .seat.selected {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+
+    .aisle {
+      width: 100%;
+    }
+
+    /* Total Fare Box */
+    .fare-box {
+      background: #092e42;
+      border: 1px solid #0369a1;
+      padding: 15px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .fare-box label {
+      color: #93c5fd;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .fare-box span {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .btn-pay {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(90deg, #16a34a, #15803d);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+    }
+
+    .btn-pay:hover {
+      opacity: 0.9;
+    }
+
+    #status-msg {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+      font-size: 13px;
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
+  <!-- Top Announcement -->
   <div class="promo-banner">
-    ⚡ Fast, Safe & Reliable Travel Across Kenya | Direct M-Pesa STK Push Payment
+    ⚡ Fast, Safe & Reliable Travel Across Kenya | Direct M-Pesa Integration
   </div>
 
-  <!-- Hero Banner -->
-  <header class="hero">
+  <!-- Hero Header -->
+  <div class="hero">
     <h1>Travel Comfortably with <span>Eazy Coach</span></h1>
-    <p>Book your preferred bus seats in seconds with instant M-Pesa payment and automated SMS ticket delivery.</p>
+    <p>Book your preferred bus seats in seconds with instant M-Pesa STK Push payment and automatic SMS ticket confirmation.</p>
     
     <div class="features-grid">
       <div class="feature-card">
@@ -24,41 +324,41 @@
         <p>Direct M-Pesa PIN prompt</p>
       </div>
       <div class="feature-card">
-        <h4>💺 Live Seat Selection</h4>
-        <p>Pick your exact seat</p>
+        <h4>💺 Live Seat Picker</h4>
+        <p>Choose your exact seat</p>
       </div>
       <div class="feature-card">
         <h4>📱 SMS E-Ticket</h4>
         <p>Sent directly to your phone</p>
       </div>
     </div>
-  </header>
+  </div>
 
-  <!-- Main Body Content: Advertising Left Column & Form Right Column -->
-  <main class="main-wrapper">
+  <!-- Main Body Section -->
+  <div class="main-wrapper">
     
-    <!-- Advertising / Information Column -->
-    <section class="info-side">
-      <h2>Why Travel With Eazy Coach?</h2>
-      <p>We connect major Kenyan urban hubs with scheduled daily departures, ultimate passenger safety, and transparent pricing.</p>
+    <!-- Left Advertising Column -->
+    <div class="info-side">
+      <h2>Why Book With Eazy Coach?</h2>
+      <p>We connect major Kenyan hubs with scheduled daily departures, ultimate passenger comfort, and transparent pricing.</p>
       
       <ul class="benefits-list">
-        <li><span class="icon">✓</span> Guaranteed Seat Reservations</li>
-        <li><span class="icon">✓</span> Free Onboard Wi-Fi & Charging Outlets</li>
-        <li><span class="icon">✓</span> Instant M-Pesa Payment Security</li>
-        <li><span class="icon">✓</span> 24/7 Customer Service Support</li>
+        <li><div class="icon">✓</div> Guaranteed Seat Reservations</li>
+        <li><div class="icon">✓</div> Free Onboard Wi-Fi & Charging Outlets</li>
+        <li><div class="icon">✓</div> Instant M-Pesa Payment Security</li>
+        <li><div class="icon">✓</div> 24/7 Customer Support Assistance</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Interactive Booking Card -->
-    <section class="booking-card">
-      <h3>Book Your Seat</h3>
+    <!-- Right Interactive Form Column -->
+    <div class="booking-card">
+      <h3>Select Trip & Book</h3>
 
-      <!-- Step 1: Destination -->
+      <!-- Route Selector -->
       <div class="form-step">
-        <label for="route">1. Travel Route</label>
+        <label for="route">1. Select Travel Route</label>
         <select id="route" onchange="updateFare()">
-          <option value="">Select Destination...</option>
+          <option value="">Choose Destination...</option>
           <option value="Nairobi-Kisumu" data-fare="1750">Nairobi ➔ Kisumu (KES 1,750)</option>
           <option value="Nairobi-Busia" data-fare="1800">Nairobi ➔ Busia (KES 1,800)</option>
           <option value="Nairobi-Eldoret" data-fare="1550">Nairobi ➔ Eldoret (KES 1,550)</option>
@@ -69,18 +369,18 @@
         </select>
       </div>
 
-      <!-- Step 2: Date Picker -->
+      <!-- Date Selector -->
       <div class="form-step">
-        <label for="date">2. Travel Date</label>
+        <label for="date">2. Select Travel Date</label>
         <input type="date" id="date" />
       </div>
 
-      <!-- Step 3: Interactive Seat Picker -->
+      <!-- Seat Grid -->
       <div class="form-step">
-        <label>3. Preferred Seat</label>
+        <label>3. Select Preferred Seat</label>
         <div class="seat-section">
           <div class="seat-header">
-            <span>Select Seat</span>
+            <span>Choose Seat</span>
             <span id="selected-seat-text">None</span>
           </div>
           <div class="bus-grid">
@@ -105,13 +405,13 @@
         </div>
       </div>
 
-      <!-- Step 4: Phone Number -->
+      <!-- Phone Number -->
       <div class="form-step">
         <label for="phone">4. M-Pesa Phone Number</label>
         <input type="tel" id="phone" placeholder="e.g. 254712345678" />
       </div>
 
-      <!-- Total Fare & Payment Trigger -->
+      <!-- Total & Action -->
       <div class="fare-box">
         <label>Total Fare:</label>
         <span id="total-fare">KES 0</span>
@@ -119,9 +419,9 @@
 
       <button class="btn-pay" onclick="triggerMpesaPayment()">Pay via M-PESA</button>
       <p id="status-msg"></p>
-    </section>
+    </div>
 
-  </main>
+  </div>
 
   <footer>
     © 2026 Eazy Coach Express. All Rights Reserved.
