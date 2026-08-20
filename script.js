@@ -1,7 +1,6 @@
 let selectedSeat = '';
 let selectedFare = 0;
 
-// Update total fare based on route
 function updateFare() {
   const routeSelect = document.getElementById('route');
   const option = routeSelect.options[routeSelect.selectedIndex];
@@ -9,7 +8,6 @@ function updateFare() {
   document.getElementById('total-fare').innerText = `KES ${selectedFare}`;
 }
 
-// Seat selection logic
 function selectSeat(button, seatNum) {
   document.querySelectorAll('.seat').forEach(btn => btn.classList.remove('selected'));
   button.classList.add('selected');
@@ -17,7 +15,6 @@ function selectSeat(button, seatNum) {
   document.getElementById('selected-seat-text').innerText = seatNum;
 }
 
-// Trigger payment call to your Render backend
 async function triggerMpesaPayment() {
   const route = document.getElementById('route').value;
   const date = document.getElementById('date').value;
@@ -25,17 +22,16 @@ async function triggerMpesaPayment() {
   const statusMsg = document.getElementById('status-msg');
 
   if (!route || !date || !selectedSeat || !phone) {
-    statusMsg.innerText = 'Please complete all fields and pick a seat.';
-    statusMsg.style.color = 'red';
+    statusMsg.innerText = 'Please complete all fields and select a seat.';
+    statusMsg.style.color = '#ef4444';
     return;
   }
 
   statusMsg.innerText = 'Sending M-Pesa STK push prompt...';
-  statusMsg.style.color = 'blue';
+  statusMsg.style.color = '#38bdf8';
 
   try {
-    // Replace URL below with your actual Render API URL once deployed
-    const response = '[https://eazy-coach-booking.onrender.com/api/pay](https://eazy-coach-booking.onrender.com/api/pay)'
+    const response = await fetch('https://eazy-coach-booking.onrender.com/api/pay', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -50,13 +46,13 @@ async function triggerMpesaPayment() {
     const data = await response.json();
     if (data.success) {
       statusMsg.innerText = 'STK Push sent! Enter your PIN on your phone.';
-      statusMsg.style.color = 'green';
+      statusMsg.style.color = '#22c55e';
     } else {
       statusMsg.innerText = 'Failed to initiate payment. Check phone number.';
-      statusMsg.style.color = 'red';
+      statusMsg.style.color = '#ef4444';
     }
   } catch (err) {
-    statusMsg.innerText = 'Error connecting to server.';
-    statusMsg.style.color = 'red';
+    statusMsg.innerText = 'Error connecting to backend server.';
+    statusMsg.style.color = '#ef4444';
   }
 }
