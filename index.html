@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eazy Coach - Booking & Courier Portal</title>
+    <title>EAZY COACH - Booking & Courier Portal</title>
     <style>
         * {
             box-sizing: border-box;
@@ -24,6 +24,27 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
+        }
+        /* Website Main Header Title */
+        .site-header {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .site-header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+        .title-eazy {
+            color: #cc0000;
+        }
+        .title-coach {
+            color: #ffffff;
+            background-color: #333; /* Contrast block so white text pops on a light background */
+            padding: 0 8px;
+            border-radius: 4px;
+            margin-left: 4px;
         }
         /* Individual Form Card (Light Theme) */
         .form-card {
@@ -193,6 +214,11 @@
 <body>
 
 <div class="page-wrapper">
+
+    <!-- Website Header Title -->
+    <header class="site-header">
+        <h1><span class="title-eazy">EAZY</span><span class="title-coach">COACH</span></h1>
+    </header>
 
     <!-- FORM 1: BUS SEAT BOOKING -->
     <div class="form-card">
