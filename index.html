@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eazy Coach Booking</title>
+    <title>eazycoach - Booking & Services</title>
     <style>
-        /* --- YOUR EXACT CSS --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,8 +13,8 @@
         }
 
         body {
-            background: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.5)), 
-                        url('bus-bg.jpg') center/cover no-repeat fixed;
+            background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.6)), 
+                        url('bus-bg.png') center/cover no-repeat fixed;
             color: #f8fafc;
             min-height: 100vh;
             display: flex;
@@ -45,20 +44,65 @@
         /* Multi-Column Main Layout */
         .main-wrapper {
             max-width: 1100px;
-            margin: 20px auto 40px auto;
+            margin: 10px auto 40px auto;
             padding: 0 20px;
             width: 100%;
             display: flex;
             gap: 40px;
             z-index: 10;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
+        .info-side {
+            flex: 1;
+            min-width: 300px;
+            padding-top: 20px;
+        }
+
+        .info-side h2 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .info-side p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: #e2e8f0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .benefits-list .icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(3, 105, 161, 0.8);
+            color: #38bdf8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Booking Card */
         .booking-card {
             flex: 1.1;
             min-width: 320px;
-            max-width: 500px;
             background: rgba(30, 41, 59, 0.85);
             border: 1px solid #334155;
             border-radius: 20px;
@@ -224,6 +268,16 @@
     </header>
 
     <div class="main-wrapper">
+        <div class="info-side">
+            <h2>Travel & Logistics Made Easy</h2>
+            <p>Experience seamless inter-county travel with modern executive coaches, reliable parcel delivery, and corporate bus hire solutions.</p>
+            <ul class="benefits-list">
+                <li><div class="icon">✓</div> Real-time seat selection & instant ticketing</li>
+                <li><div class="icon">✓</div> Fast and secure parcel and courier dispatch</li>
+                <li><div class="icon">✓</div> Customizable executive bus hire for events & groups</li>
+            </ul>
+        </div>
+
         <div class="booking-card">
             <h3>Book Your Seat</h3>
             
