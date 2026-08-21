@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eazycoach - Booking Portal</title>
+    <title>Eazy Coach Booking</title>
     <style>
+        /* --- YOUR EXACT CSS --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,7 +14,7 @@
         }
 
         body {
-            background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.6)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.5)), 
                         url('bus-bg.jpg') center/cover no-repeat fixed;
             color: #f8fafc;
             min-height: 100vh;
@@ -21,89 +22,27 @@
             flex-direction: column;
         }
 
-        /* Top Navigation with Brand Logo on Top-Left */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: transparent;
-            width: 100%;
+        /* Top-Left Brand Header */
+        .brand-header {
+            padding: 25px 40px;
         }
 
-        .brand-logo {
-            font-size: 32px;
+        .brand-title {
+            font-size: 42px;
             font-weight: 900;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
             text-decoration: none;
         }
 
-        .brand-logo .eazy {
+        .brand-title .eazy {
             color: #ef4444; /* Red */
         }
 
-        .brand-logo .coach {
+        .brand-title .coach {
             color: #ffffff; /* White */
         }
 
-        .promo-banner {
-            background: rgba(37, 99, 235, 0.85);
-            backdrop-filter: blur(4px);
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 15px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 40px 20px 50px 20px;
-            text-align: center;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #cbd5e1;
-            max-width: 600px;
-            margin: 0 auto 25px auto;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .features-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
-        .feature-card {
-            background: rgba(15, 23, 42, 0.55);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px 25px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-        }
-
-        .feature-card h4 {
-            color: #38bdf8;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .feature-card p {
-            font-size: 13px;
-            color: #cbd5e1;
-            margin: 0;
-            text-shadow: none;
-        }
-
-        /* Main Wrapper */
+        /* Multi-Column Main Layout */
         .main-wrapper {
             max-width: 1100px;
             margin: 20px auto 40px auto;
@@ -113,71 +52,26 @@
             gap: 40px;
             z-index: 10;
             flex-wrap: wrap;
-        }
-
-        .info-side {
-            flex: 1;
-            min-width: 300px;
-            padding-top: 20px;
-        }
-
-        .info-side h2 {
-            font-size: 28px;
-            color: #ffffff;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .info-side p {
-            color: #cbd5e1;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .benefits-list {
-            list-style: none;
-        }
-
-        .benefits-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 15px;
-            color: #e2e8f0;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .benefits-list .icon {
-            width: 28px;
-            height: 28px;
-            background: rgba(3, 105, 161, 0.8);
-            color: #38bdf8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-weight: bold;
         }
 
-        /* Transparent Booking Card */
         .booking-card {
             flex: 1.1;
             min-width: 320px;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            max-width: 500px;
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid #334155;
             border-radius: 20px;
             padding: 30px;
-            backdrop-filter: blur(12px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
         }
 
         .booking-card h3 {
             font-size: 22px;
             margin-bottom: 20px;
             color: #ffffff;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid #334155;
             padding-bottom: 10px;
         }
 
@@ -198,7 +92,7 @@
         select, input[type="date"], input[type="tel"] {
             width: 100%;
             padding: 12px 15px;
-            background: rgba(15, 23, 42, 0.8);
+            background: #0f172a;
             border: 1px solid #334155;
             border-radius: 8px;
             color: #ffffff;
@@ -210,12 +104,12 @@
             border-color: #38bdf8;
         }
 
+        /* Interactive Seat Grid */
         .seat-section {
-            background: rgba(15, 23, 42, 0.5);
+            background: #0f172a;
             padding: 15px;
             border-radius: 12px;
             border: 1px solid #334155;
-            margin-bottom: 20px;
         }
 
         .seat-header {
@@ -235,13 +129,13 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 8px;
-            max-height: 200px;
+            max-height: 180px;
             overflow-y: auto;
         }
 
         .seat {
             padding: 10px 0;
-            background: rgba(30, 41, 59, 0.8);
+            background: #1e293b;
             border: 1px solid #334155;
             color: #cbd5e1;
             border-radius: 6px;
@@ -262,8 +156,9 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
         }
 
+        /* Fare Box */
         .fare-box {
-            background: rgba(9, 46, 66, 0.8);
+            background: #092e42;
             border: 1px solid #0369a1;
             padding: 15px;
             border-radius: 8px;
@@ -296,7 +191,6 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
-            transition: 0.2s;
         }
 
         .btn-pay:hover {
@@ -316,55 +210,22 @@
             color: #94a3b8;
             font-size: 13px;
             margin-top: auto;
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(4px);
+            background: rgba(15, 23, 42, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="brand-logo">
+    <!-- Top-Left Branding -->
+    <header class="brand-header">
+        <div class="brand-title">
             <span class="eazy">eazy</span><span class="coach">coach</span>
         </div>
-    </nav>
-
-    <div class="promo-banner">
-        🎉 Secure Your Seat Online Instantly via M-Pesa STK Push!
-    </div>
-
-    <section class="hero">
-        <p>Fast, reliable, and comfortable travel across Kenya. Book your bus ticket in seconds.</p>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <h4>Verified Fleet</h4>
-                <p>Top-tier executive coaches</p>
-            </div>
-            <div class="feature-card">
-                <h4>Instant M-Pesa</h4>
-                <p>Direct STK push prompt</p>
-            </div>
-            <div class="feature-card">
-                <h4>24/7 Support</h4>
-                <p>Always here to help you</p>
-            </div>
-        </div>
-    </section>
+    </header>
 
     <div class="main-wrapper">
-        <div class="info-side">
-            <h2>Travel with Confidence</h2>
-            <p>Experience seamless inter-county travel with modern amenities, onboard entertainment, and punctual departures.</p>
-            <ul class="benefits-list">
-                <li><div class="icon">✓</div> Real-time seat selection</li>
-                <li><div class="icon">✓</div> Instant booking confirmation via SMS</li>
-                <li><div class="icon">✓</div> Flexible parcel and courier services</li>
-            </ul>
-        </div>
-
         <div class="booking-card">
-            <h3>Book Your Bus Ticket</h3>
+            <h3>Book Your Seat</h3>
             
             <form id="bookingForm">
                 <div class="form-step">
@@ -415,7 +276,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Generate Seats (40 Seats)
             const busGrid = document.getElementById('busGrid');
             let selectedSeat = null;
             const rows = 10;
@@ -438,7 +298,6 @@
                 }
             });
 
-            // 2. Fare Calculation
             const routeSelect = document.getElementById('routeSelect');
             const totalFareDisplay = document.getElementById('totalFareDisplay');
 
@@ -452,7 +311,6 @@
             routeSelect.addEventListener('change', updateFare);
             updateFare();
 
-            // 3. Handle Form Submission & STK Push Trigger
             const form = document.getElementById('bookingForm');
             const payBtn = document.getElementById('payBtn');
             const statusMsg = document.getElementById('status-msg');
@@ -486,15 +344,15 @@
 
                     if (data.success) {
                         statusMsg.style.color = '#16a34a';
-                        statusMsg.textContent = 'STK Push sent successfully! Enter your PIN to complete payment.';
+                        statusMsg.textContent = 'STK Push sent successfully! Enter your PIN.';
                     } else {
                         statusMsg.style.color = '#ef4444';
-                        statusMsg.textContent = data.error || 'Payment request failed. Try again.';
+                        statusMsg.textContent = data.error || 'Payment request failed.';
                     }
                 } catch (err) {
                     console.error(err);
                     statusMsg.style.color = '#ef4444';
-                    statusMsg.textContent = 'Connection error. Ensure your backend server is running.';
+                    statusMsg.textContent = 'Connection error. Check your server.';
                 } finally {
                     payBtn.textContent = 'Pay via M-Pesa';
                     payBtn.disabled = false;
