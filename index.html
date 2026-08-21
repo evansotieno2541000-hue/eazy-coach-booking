@@ -21,7 +21,6 @@
             flex-direction: column;
         }
 
-        /* Top-Left Brand Header */
         .brand-header {
             padding: 25px 40px;
         }
@@ -34,14 +33,13 @@
         }
 
         .brand-title .eazy {
-            color: #ef4444; /* Red */
+            color: #ef4444;
         }
 
         .brand-title .coach {
-            color: #ffffff; /* White */
+            color: #ffffff;
         }
 
-        /* Multi-Column Main Layout */
         .main-wrapper {
             max-width: 1100px;
             margin: 10px auto 40px auto;
@@ -99,7 +97,6 @@
             font-weight: bold;
         }
 
-        /* Booking Card */
         .booking-card {
             flex: 1.1;
             min-width: 320px;
@@ -148,7 +145,6 @@
             border-color: #38bdf8;
         }
 
-        /* Interactive Seat Grid */
         .seat-section {
             background: #0f172a;
             padding: 15px;
@@ -200,7 +196,6 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
         }
 
-        /* Fare Box */
         .fare-box {
             background: #092e42;
             border: 1px solid #0369a1;
@@ -260,7 +255,6 @@
 </head>
 <body>
 
-    <!-- Top-Left Branding -->
     <header class="brand-header">
         <div class="brand-title">
             <span class="eazy">eazy</span><span class="coach">coach</span>
@@ -388,7 +382,8 @@
                 statusMsg.textContent = 'Please check your phone for the M-Pesa prompt...';
 
                 try {
-                    const response = await fetch('http://localhost:3000/api/pay', {
+                    // Uses relative route so it works seamlessly on Vercel deployment
+                    const response = await fetch('/api/pay', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ phone, amount, route, seat: selectedSeat, date })
@@ -406,7 +401,7 @@
                 } catch (err) {
                     console.error(err);
                     statusMsg.style.color = '#ef4444';
-                    statusMsg.textContent = 'Connection error. Check your server.';
+                    statusMsg.textContent = 'Connection error. Check your server configuration.';
                 } finally {
                     payBtn.textContent = 'Pay via M-Pesa';
                     payBtn.disabled = false;
